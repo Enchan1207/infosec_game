@@ -32,27 +32,28 @@
                 </div>
             </div>
 
-            <form action="" class="input-form">
+            <form action="javascript:void(0);" method="post" class="input-form">
+                <input type="hidden" name="formula" value="&quot;">
                 <div class="input-fields">
                     <div class="input-container">
-                        <label class="input-label" for="inputX">x =</label>
-                        <input type="number" class="input-field" id="inputX">
+                        <label class="input-label" for="x">x =</label>
+                        <input type="number" class="input-field" id="x" name="x">
                     </div>
                     <div class="input-container">
-                        <label class="input-label" for="inputY">y =</label>
-                        <input type="number" class="input-field" id="inputY">
+                        <label class="input-label" for="y">y =</label>
+                        <input type="number" class="input-field" id="y" name="y">
                     </div>
                 </div>
                 <div class="input-container">
                     <button class="btn btn-primary" type="submit" id="check">確定</button>
-                    <button class="btn btn-secondary" type="button" id="nosolution">解なし</button>
-                    <button class="btn btn-secondary" type="button" id="skip">スキップ</button>
+                    <button class="btn btn-secondary" type="submit" id="nosolution">解なし</button>
+                    <button class="btn btn-secondary" type="submit" id="skip">スキップ</button>
                 </div>
             </form>
 
             <div class="result-container">
                 <div class="caption">正解! x=5, y=4</div>
-                <button class="btn btn-secondary" type="button" id="nextButton">次の問題へ</button>
+                <button class="btn btn-secondary" type="button" id="next">次の問題へ</button>
             </div>
         </div>
 

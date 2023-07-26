@@ -112,3 +112,22 @@ h1 {
     margin-top: 20px;
     font-size: 1.1em;
 }
+
+.result-container .caption {
+    padding: 10px;
+    flex-grow: 1;
+}
+
+@keyframes blink {
+    0% {
+        background-color: yellow;
+    }
+
+    100% {
+        background-color: transparent;
+    }
+}
+
+.blink {
+    animation: blink .5s;
+}

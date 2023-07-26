@@ -33,15 +33,17 @@ export function generateFormula() {
     // gcdを適当に乗算してcとする
     const gcdAmplitudeMin = 1;
     const gcdAmplitudeMax = 5;
-    const c = gcd * nonZeroRandom(gcdAmplitudeMin, gcdAmplitudeMax);
+    const gcdAmplitude = nonZeroRandom(gcdAmplitudeMin, gcdAmplitudeMax);
+    const c = gcd * gcdAmplitude;
 
     // 一応計算しておく
     let correctX = 0;
     let correctY = 0;
     if (!hasNoSolution) {
         const [_, x, y] = extGCD(a, b);
-        correctX = x;
-        correctY = y;
+
+        correctX = x * gcdAmplitude;
+        correctY = y * gcdAmplitude;
     }
     const signedStr = (a) => { return `${(Math.sign(a) > 0) ? "+" : "-"}${Math.abs(a)}` };
 

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- load KaTeX -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/index.js"></script>
+
+    <title>Infosec quiz</title>
+</head>
+
+<body>
+
+    <div class="frame">
+
+        <div class="container">
+            <h1>次の一次不定方程式を解け。</h1>
+            <div class="equation-container">
+                <div id="equation"></div>
+                <div class="overlay">
+                    <span>数式を生成しています…</span>
+                </div>
+            </div>
+
+            <form action="" class="input-form">
+                <div class="input-fields">
+                    <div class="input-container">
+                        <label class="input-label" for="inputX">x =</label>
+                        <input type="number" class="input-field" id="inputX">
+                    </div>
+                    <div class="input-container">
+                        <label class="input-label" for="inputY">y =</label>
+                        <input type="number" class="input-field" id="inputY">
+                    </div>
+                </div>
+                <div class="input-container">
+                    <button class="btn btn-primary" type="submit" id="check">確定</button>
+                    <button class="btn btn-secondary" type="button" id="nosolution">解なし</button>
+                    <button class="btn btn-secondary" type="button" id="skip">スキップ</button>
+                </div>
+            </form>
+
+            <div class="result-container">
+                <div class="caption">正解! x=5, y=4</div>
+                <button class="btn btn-secondary" type="button" id="nextButton">次の問題へ</button>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>

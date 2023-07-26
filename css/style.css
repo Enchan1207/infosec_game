@@ -1,0 +1,112 @@
+/*
+ *
+ */
+
+body {
+    margin: 0;
+    font-family: "Helvetica Neue", "Helvetica", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", "Meiryo", sans-serif;
+    color: #444;
+}
+
+.frame {
+    max-width: 500px;
+    margin: auto;
+    padding: 20px;
+}
+
+.container {
+    padding: 20px;
+    border: 1px #ccc solid;
+    background-color: #f5f5f5;
+    border-radius: 3px;
+}
+
+h1 {
+    font-weight: unset;
+    font-size: 1.3em;
+}
+
+.equation-container {
+    position: relative;
+
+    margin: 20px 0;
+    padding: 10px 0;
+    background-color: white;
+    font-size: 1.2em;
+    text-align: center;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background-color: #666;
+}
+
+.overlay span {
+    color: white;
+    animation: fadeBlink 3s infinite;
+}
+
+@keyframes fadeBlink {
+    0% {
+        opacity: 1;
+    }
+
+    25% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    75% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.equation-container .overlay.hide {
+    display: none;
+}
+
+.input-form {
+    text-align: center;
+}
+
+.input-container {
+    width: 80%;
+    min-width: 300px;
+    display: inline-flex;
+    justify-content: center;
+    gap: 5px 10px;
+    padding: 5px 0;
+}
+
+.input-label {
+    text-align: right;
+    min-width: 40px;
+}
+
+.input-container .btn {
+    width: calc((100% - 20px) / 3);
+}
+
+.result-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0 5px;
+    padding: 10px 5px;
+    margin-top: 20px;
+}

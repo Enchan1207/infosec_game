@@ -11,11 +11,11 @@ import { euclideanGCD, extGCD, nonZeroRandom } from "./math.js"
 export function generateFormula() {
 
     // 合同式か不定式か
-    const formulaType = "indeterminate"; // (Math.random() < 0.5) ? "indeterminate" : "congruence";
+    const formulaType = "indeterminate";
 
     // a, bを生成
     const coefficientMin = 5;
-    const coefficientMax = formulaType === "indeterminate" ? 200 : 100;
+    const coefficientMax = 100;
     const a = nonZeroRandom(coefficientMin, coefficientMax);
     const b = nonZeroRandom(coefficientMin, coefficientMax);
 

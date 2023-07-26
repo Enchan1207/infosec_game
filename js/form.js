@@ -4,6 +4,59 @@
 
 import { lockInputPanel, lockNextButton, updateResultPanel } from "./uicontrol.js";
 
+/**
+ * 数式オブジェクトをもとにフォームを更新
+ * @param {Object} formula 数式オブジェクト
+ */
+export function updateForm(formula) {
+    const formElement = document.querySelector("form");
+
+    // フォームの隠し項目にjsonエンコードして保存
+    const hiddenFormulaInput = formElement.querySelector("input[name=formula]");
+    hiddenFormulaInput.value = JSON.stringify(formula);
+
+    // KaTeXに投げる
+    const formulaElement = document.querySelector("#equation");
+    katex.render(formula.katex_strings, formulaElement);
+
+    // 入力フォームを全消し
+    const inputField = formElement.querySelector(".input-fields");
+    inputField.querySelectorAll(".input-container").forEach((elem) => {
+        elem.remove();
+    });
+
+    // 再構成
+    Object.keys(formula).filter((key) => { return key.startsWith("correct_") }).map((key) => {
+        const inputElement = createInputFormElement(key);
+        inputField.appendChild(inputElement);
+    });
+
+}
+
+function createInputFormElement(key) {
+    const rawKey = key.replace("correct_", "");
+    const container = document.createElement("div");
+    container.className = "input-container";
+    const label = document.createElement("label");
+    label.className = "input-label";
+    label.setAttribute("for", rawKey);
+    label.textContent = `${rawKey} =`;
+    const field = document.createElement("input");
+    field.type = "number";
+    field.className = "input-field";
+    field.id = rawKey;
+    field.name = `${key.replace("correct_", "answer_")}`;
+
+    container.appendChild(label);
+    container.appendChild(field);
+    return container;
+}
+
+/**
+ * フォーム送信時の処理
+ * @param {string} submitID フォーム送信コマンド
+ * @param {Object} formData フォームデータ
+ */
 export function onSubmitForm(submitID, formData) {
     const formula = JSON.parse(formData.formula);
 

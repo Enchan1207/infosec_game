@@ -2,8 +2,9 @@
 // 状態初期化
 //
 
+import { updateForm } from "./form.js";
 import { generateFormula } from "./formula.js";
-import { hideFormulaOverlay, lockInputPanel, lockNextButton } from "./uicontrol.js";
+import { hideFormulaOverlay, lockInputPanel, lockNextButton, updateResultPanel } from "./uicontrol.js";
 
 /**
  * ゲームを初期状態に戻す
@@ -11,11 +12,7 @@ import { hideFormulaOverlay, lockInputPanel, lockNextButton } from "./uicontrol.
 export function initializeGame() {
 
     // 結果パネルをクリア
-    const resultPanel = document.querySelector(".result-container .caption");
-    resultPanel.addEventListener("animationend", () => {
-        resultPanel.classList.remove("blink");
-    });
-    resultPanel.textContent = "";
+    updateResultPanel("ready");
 
     // 入力パネルを無効化して値をクリア
     lockInputPanel(true);
@@ -30,15 +27,26 @@ export function initializeGame() {
     // 数式を生成
     const formula = generateFormula();
 
-    // KaTeXに投げる
-    const formulaElement = document.getElementById("equation");
-    katex.render(formula.katex_strings, formulaElement);
+    // ヘッダを更新
+    const formulaNameByType = (type) => {
+        switch (type) {
+            case "indeterminate":
+                return "一次不定方程式";
 
-    // フォームの隠し項目にjsonエンコードして保存
-    const hiddenFormulaInput = document.querySelector("form input[name=formula]");
-    hiddenFormulaInput.value = JSON.stringify(formula);
+            case "congruence":
+                return "合同式";
 
-    // TODO: 式の変数の数に合わせてフォームを更新
+            case "simultaneous_congruence":
+                return "連立合同式";
+
+            default:
+                return "方程式";
+        }
+    };
+    document.querySelector("h1").textContent = `次の${formulaNameByType(formula.type)}を解け。`;
+
+    // フォームを更新
+    updateForm(formula);
 
     // 数式表示オーバレイを隠す
     hideFormulaOverlay(false);

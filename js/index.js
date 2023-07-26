@@ -9,6 +9,12 @@ document.addEventListener("DOMContentLoaded", initializeGame);
 
 document.addEventListener("DOMContentLoaded", () => {
 
+    // 結果パネルの初期設定
+    const resultPanel = document.querySelector(".result-container .caption");
+    resultPanel.addEventListener("animationend", () => {
+        resultPanel.classList.remove("blink");
+    });
+
     // 「次の問題へ」がクリックされたら、ゲームを初期化する
     const nextQuestionButton = document.getElementById("next");
     nextQuestionButton.addEventListener("click", initializeGame);

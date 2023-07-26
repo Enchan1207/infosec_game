@@ -7,9 +7,6 @@
  * @returns 生成された数式オブジェクト
  */
 export function generateFormula() {
-    // indeterminate: 不定式
-    // congruence: 合同式
-    // simultaneous_congruence: 連立合同式
     return {
         "type": "indeterminate",
         "a": 1,

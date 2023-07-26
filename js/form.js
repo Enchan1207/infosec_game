@@ -100,17 +100,12 @@ function isCorrectAnswer(formula, formData, submitID) {
     }
 
     // 数値比較
-    const correctKeysWithoutPrefix = Object
-        .keys(formula)
-        .filter((key) => { return key.startsWith("correct_") })
-        .map((key) => key.replace("correct_", ""));
-    const isCorrect = correctKeysWithoutPrefix.map((key) => {
-        const correctKey = `correct_${key}`;
-        const answerKey = `answer_${key}`;
-        const isSameValue = Number(formula[correctKey]) === Number(formData[answerKey]);
-        return isSameValue;
-    }).every(e => e === true);
-    return isCorrect;
+    const ansX = formData.answer_x;
+    const ansY = formData.answer_y;
+    const a = formula.a;
+    const b = formula.b;
+    const c = formula.c;
+    return (a * ansX + b * ansY) === c;
 }
 
 /**

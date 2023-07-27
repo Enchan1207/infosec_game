@@ -13,38 +13,30 @@ export function generateFormula() {
     // 合同式か不定式か
     const formulaType = "indeterminate";
 
-    // a, bを生成
+    // a, b, cを生成
     const coefficientMin = 5;
     const coefficientMax = 100;
+    const cMin = 1;
+    const cMax = 10;
     const a = nonZeroRandom(coefficientMin, coefficientMax);
     const b = nonZeroRandom(coefficientMin, coefficientMax);
-
-    // 解なしにするかどうかの抽選
-    const hasNoSolution = Math.random() < 0.1;
+    const c = nonZeroRandom(cMin, cMax);
 
     // GCD(a, b) を計算
-    let gcd = euclideanGCD(a, b);
+    const gcd = euclideanGCD(a, b);
 
-    // 特定の確率で解なしにするためgcdをいじる
-    if (hasNoSolution && gcd != 1) {
-        gcd += nonZeroRandom(2, 3);
-    }
+    // c が GCD(a, b) の倍数かどうか = 解があるかどうか
+    const hasNoSolution = (c % gcd) !== 0;
 
-    // gcdを適当に乗算してcとする
-    const gcdAmplitudeMin = 1;
-    const gcdAmplitudeMax = 5;
-    const gcdAmplitude = nonZeroRandom(gcdAmplitudeMin, gcdAmplitudeMax);
-    const c = gcd * gcdAmplitude;
-
-    // 一応計算しておく
+    // ax + by = gcd(a, b) となる x, y を計算
     let correctX = 0;
     let correctY = 0;
     if (!hasNoSolution) {
         const [_, x, y] = extGCD(a, b);
-
-        correctX = x * gcdAmplitude;
-        correctY = y * gcdAmplitude;
+        correctX = x;
+        correctY = y;
     }
+
     const signedStr = (a) => { return `${(Math.sign(a) > 0) ? "+" : "-"}${Math.abs(a)}` };
 
     return {
